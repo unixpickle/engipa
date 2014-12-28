@@ -22,5 +22,7 @@ func DictionaryIPA(word string) (string, string, error) {
 		ipa = ipa[0:idx]
 	}
 	ipa = strings.Replace(ipa, "y", "j", -1)
+	ipa = strings.Replace(strings.Replace(ipa, "ɑː", "ɑ", -1), "ɑ", "ɑː",
+		-1)
 	return ipa, heading, nil
 }

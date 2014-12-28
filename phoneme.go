@@ -14,7 +14,7 @@ func Alphabet() []Phoneme {
 		"juː ue 1  ʌ u 1  ə a 1  ɨ e 1  ɵ o 1  ʉ u 1  i i 1  b b 0  " +
 		"d d 0  ð th 0  dʒ j 0  f f 0  ɡ g 0  h h 0  j y 0  k k 0  " +
 		"l l 0  m m 0  n n 0  ŋ ng 0  θ th 0  p p 0  r r 0  s s 0  " +
-		"ʃ sh 0  t t 0  tʃ ch 0  v v 0  w w 0  hw why 0  z z 0  ʒ ti 0  " +
+		"ʃ sh 0  t t 0  tʃ ch 0  v v 0  w w 0  hw wh 0  z z 0  ʒ ti 0  " +
 		"x ch 0  ʔ - 0  ʊː oo 1"
 	packed := strings.Split(letters, "  ")
 	res := make([]Phoneme, len(packed))

@@ -35,7 +35,7 @@ func FindIPAWords(words []string) map[string]string {
 	wg := sync.WaitGroup{}
 	ch := make(chan string)
 	// Launch background goroutines
-	for i := 0; i < 1; i++ {
+	for i := 0; i < 8; i++ {
 		wg.Add(1)
 		go func() {
 			for {
@@ -47,6 +47,7 @@ func FindIPAWords(words []string) map[string]string {
 				lock.Lock()
 				if err != nil {
 					numErrors++
+					fmt.Println("error for word:", word)
 				} else {
 					res[word] = ipa
 				}
@@ -58,7 +59,7 @@ func FindIPAWords(words []string) map[string]string {
 	// Push words to the queue
 	for i, word := range words {
 		ch <- word
-		if i%500 == 0 || true {
+		if i%500 == 0 {
 			lock.Lock()
 			fmt.Println("Up to", i, "with", numErrors, "errors")
 			lock.Unlock()
