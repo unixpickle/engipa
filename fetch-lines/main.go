@@ -9,6 +9,8 @@ import (
 	"sync"
 )
 
+const NumRoutines = 16
+
 func main() {
 	if err := ErrMain(); err != nil {
 		fmt.Fprintln(os.Stderr, err)
@@ -35,7 +37,7 @@ func FindIPAWords(words []string) map[string]string {
 	wg := sync.WaitGroup{}
 	ch := make(chan string)
 	// Launch background goroutines
-	for i := 0; i < 8; i++ {
+	for i := 0; i < NumRoutines; i++ {
 		wg.Add(1)
 		go func() {
 			for {
@@ -47,7 +49,6 @@ func FindIPAWords(words []string) map[string]string {
 				lock.Lock()
 				if err != nil {
 					numErrors++
-					fmt.Println("error for word:", word)
 				} else {
 					res[word] = ipa
 				}
