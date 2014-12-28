@@ -1,4 +1,6 @@
-package main
+package fetcher
+
+import "strings"
 
 func CambridgeIPA(word string) (string, string, error) {
 	url := "http://dictionary.cambridge.org/us/search/american-english/" +
@@ -16,5 +18,6 @@ func CambridgeIPA(word string) (string, string, error) {
 	if err != nil {
 		return "", "", err
 	}
+	ipa = strings.Replace(ipa, "e", "ɛ", -1)
 	return ipa, heading, nil
 }

@@ -6,6 +6,9 @@ type Word []Phoneme
 
 // ParseWord turns an IPA string into a phonetic word.
 func ParseWord(word string) Word {
+	if len(word) == 0 {
+		return Word{}
+	}
 	alphabet := LongestToShortest()
 	for _, p := range alphabet {
 		if strings.HasPrefix(word, p.IPA) {
@@ -31,4 +34,12 @@ func (w Word) EndsVowel() bool {
 		return false
 	}
 	return w[len(w)-1].Vowel
+}
+
+func (w Word) String() string {
+	res := ""
+	for _, p := range w {
+		res += p.IPA
+	}
+	return res
 }
